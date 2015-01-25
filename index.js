@@ -6,8 +6,6 @@ var btn_begin_normal;
 var btn_explain_normal;
 var btn_sort_normal;
 
-var index_ready = 0;
-
 var explain_image;
 
 function init() {
@@ -34,7 +32,6 @@ function init() {
 	
 	loadImage();
 	addIndexPage();
-	refresh_index_Interval;
 }
 
 function loadImage() {
@@ -61,27 +58,28 @@ function loadImage() {
 	btn_begin_normal.y = 295;
 	btn_begin_normal.addEventListener("click", handleStartClick);
 
-	index_image.image.onload = addIndexReady();
-	btn_explain_normal.image.onload = addIndexReady();
-	btn_sort_normal.image.onload = addIndexReady();
-	btn_begin_normal.image.onload = addIndexReady();
+	index_image.image.onload = function() { 
+		stage.update();
+	};
+
+	btn_explain_normal.image.onload = function() {
+		stage.update();
+	}
+
+	btn_sort_normal.image.onload = function() {
+		stage.update();
+	}
+
+	btn_begin_normal.image.onload = function() {
+		stage.update();
+	};
 
 	explain_image.image.onload = function() {
 		scale(explain_image);
 		explain_image.addEventListener("click", handleExplainBackClick);
 	};
+
 	
-}
-
-var refresh_index_Interval = setInterval(function() {
-	if (index_ready >= 4) {
-		window.clearInterval(refresh_index_Interval);
-		stage.update();
-	}
-}, 100);
-
-function addIndexReady() {
-	index_ready++;
 }
 
 function addIndexPage() {
