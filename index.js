@@ -73,8 +73,7 @@ function loadImage() {
 
 var refresh_index_Interval = setInterval(function() {
 	if (index_ready >= 4) {
-		window.clearInterval(refresh_index_Interval);
-		stage.update();
+		addIndexPage();
 	}
 }, 100);
 
@@ -88,6 +87,7 @@ function addIndexPage() {
 	stage.addChild(btn_explain_normal);
 	stage.addChild(btn_sort_normal);
 	stage.update();
+	window.clearInterval(refresh_index_Interval);
 }
 
 function removeIndexPage() {
