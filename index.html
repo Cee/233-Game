@@ -8,6 +8,7 @@
 	<script type="text/javascript">
 		function init() {
 			var stage = new createjs.Stage("game_canvas");
+			createjs.Touch.enable(stage);
 			var index_image = new createjs.Bitmap("re233/233_Game_0.png");
 			index_image.image.onload = function() { 
 				stage.update(); 
