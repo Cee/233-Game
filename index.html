@@ -8,14 +8,17 @@
 	<script type="text/javascript">
 		function init() {
 			var stage = new createjs.Stage("game_canvas");
-			// var circle = new createjs.Shape();  
-			// circle.graphics.beginFill("red").drawCircle(0, 0, 50);  
-			// circle.x = 100;  
-			// circle.y = 100;  
 			var index_image = new createjs.Bitmap("re233/233_Game_0.png");
 			index_image.image.onload = function() { 
 				stage.update(); 
 			};
+
+			index_image.addEventListener("click", handleClick);
+			function handleClick() {
+				stage.removeChild(index_image);
+				stage.update();
+			}; 
+			
 			stage.addChild(index_image);
 		}
 		
