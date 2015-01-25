@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=device-dpi">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="full-screen" content="true">
     <meta name="screen-orientation" content="portrait">
@@ -13,9 +13,11 @@
 	<script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
 	<script type="text/javascript">
 		function init() {
+
 			var canvas = document.getElementById("game_canvas");
 			var stage = new createjs.Stage("game_canvas");
 			createjs.Touch.enable(stage);
+			stage.enableMouseOver();
 
 			if (window.devicePixelRatio) {
 				// grab the width and height from canvas
@@ -31,22 +33,36 @@
 				stage.scaleX = stage.scaleY = window.devicePixelRatio;
 			}
 			
-			var index_image = new createjs.Bitmap("re233/233_Game_0.png");
+			var index_image = new createjs.Bitmap("img/index_bg.jpg");
+			var btn_begin_normal = new createjs.Bitmap("img/btn_begin_normal.png");
+			var btn_begin_active = new createjs.Bitmap("img/btn_begin_active.png");
+			var btn_begin_hover = new createjs.Bitmap("img/btn_begin_hover.png");
+
 			index_image.image.onload = function() { 
 				index_image.scaleX = .5;
 				index_image.scaleY = .5;
 				stage.update(); 
 			};
 
-			index_image.addEventListener("click", handleClick);
-			function handleClick() {
+			var handleClick = function() {
 				stage.removeChild(index_image);
+				stage.removeChild(btn_begin_normal);
 				stage.update();
-			}; 
-			
+			};
+
+			btn_begin_normal.image.onload = function() {
+				btn_begin_normal.scaleX = .5;
+				btn_begin_normal.scaleY = .5;
+				btn_begin_normal.x = 65;
+				btn_begin_normal.y = 295;
+				btn_begin_normal.addEventListener("click", handleClick);
+				stage.update();
+			};
+
 			stage.addChild(index_image);
+			stage.addChild(btn_begin_normal);
+			
 		}
-		
 	</script>
 </head>
 <body onload="javascript:init();">
