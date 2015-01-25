@@ -13,8 +13,24 @@
 	<script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
 	<script type="text/javascript">
 		function init() {
+			var canvas = document.getElementById("game_canvas");
 			var stage = new createjs.Stage("game_canvas");
 			createjs.Touch.enable(stage);
+
+			if (window.devicePixelRatio) {
+				// grab the width and height from canvas
+				var height = canvas.getAttribute('height');
+				var width = canvas.getAttribute('width');
+				// reset the canvas width and height with window.devicePixelRatio applied
+				canvas.setAttribute('width', Math.round(width * window.devicePixelRatio));
+				canvas.setAttribute('height', Math.round( height * window.devicePixelRatio));
+				// force the canvas back to the original size using css
+				canvas.style.width = width+"px";
+				canvas.style.height = height+"px";
+				// set CreateJS to render scaled
+				stage.scaleX = stage.scaleY = window.devicePixelRatio;
+			}
+			
 			var index_image = new createjs.Bitmap("re233/233_Game_0.png");
 			index_image.image.onload = function() { 
 				index_image.scaleX = .5;
