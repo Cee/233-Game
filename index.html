@@ -11,62 +11,9 @@
 	<title>Easel Demo</title>
 	<link rel="stylesheet" href="index.css"/>
 	<script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
-	<script type="text/javascript">
-		function init() {
-
-			var canvas = document.getElementById("game_canvas");
-			var stage = new createjs.Stage("game_canvas");
-			createjs.Touch.enable(stage);
-			stage.enableMouseOver();
-
-			if (window.devicePixelRatio) {
-				// grab the width and height from canvas
-				var height = canvas.getAttribute('height');
-				var width = canvas.getAttribute('width');
-				// reset the canvas width and height with window.devicePixelRatio applied
-				canvas.setAttribute('width', Math.round(width * window.devicePixelRatio));
-				canvas.setAttribute('height', Math.round( height * window.devicePixelRatio));
-				// force the canvas back to the original size using css
-				canvas.style.width = width+"px";
-				canvas.style.height = height+"px";
-				// set CreateJS to render scaled
-				stage.scaleX = stage.scaleY = window.devicePixelRatio;
-			}
-			
-			var index_image = new createjs.Bitmap("img/index_bg.jpg");
-			var btn_begin_normal = new createjs.Bitmap("img/btn_begin_normal.png");
-			var btn_begin_active = new createjs.Bitmap("img/btn_begin_active.png");
-			var btn_begin_hover = new createjs.Bitmap("img/btn_begin_hover.png");
-
-			index_image.image.onload = function() { 
-				index_image.scaleX = .5;
-				index_image.scaleY = .5;
-				stage.update(); 
-			};
-
-			var handleClick = function() {
-				stage.removeChild(index_image);
-				stage.removeChild(btn_begin_normal);
-				stage.update();
-			};
-
-			btn_begin_normal.image.onload = function() {
-				btn_begin_normal.scaleX = .5;
-				btn_begin_normal.scaleY = .5;
-				btn_begin_normal.x = 65;
-				btn_begin_normal.y = 295;
-				btn_begin_normal.addEventListener("click", handleClick);
-				stage.update();
-			};
-
-			stage.addChild(index_image);
-			stage.addChild(btn_begin_normal);
-			
-		}
-	</script>
+	<script type="text/javascript" src="index.js"></script>
 </head>
 <body onload="javascript:init();">
-<!-- onload="javascript:init();" -->
 	<div id="game_div">
 		<canvas id="game_canvas" width="320" height="568"></canvas>
 	</div>
