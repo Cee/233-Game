@@ -6,6 +6,8 @@ var btn_begin_normal;
 var btn_explain_normal;
 var btn_sort_normal;
 
+var index_ready = 0;
+
 var explain_image;
 
 function init() {
@@ -32,6 +34,7 @@ function init() {
 	
 	loadImage();
 	addIndexPage();
+	refresh_index_Interval;
 }
 
 function loadImage() {
@@ -41,42 +44,43 @@ function loadImage() {
 	btn_sort_normal = new createjs.Bitmap("img/btn_sort_normal.png");
 	explain_image = new createjs.Bitmap("img/explain_bg.png");
 
-	index_image.image.onload = function() { 
-		scale(index_image);
-		stage.update();
-	};
+	scale(index_image);
+	scale(btn_explain_normal);
+	scale(btn_sort_normal);
+	scale(btn_begin_normal);
+	scale(explain_image);
 
-	btn_explain_normal.image.onload = function() {
-		scale(btn_explain_normal);
-		btn_explain_normal.x = 30;
-		btn_explain_normal.y = 510;
-		btn_explain_normal.addEventListener("click", handleExplainClick);
-		stage.update();
-	}
+	btn_explain_normal.x = 30;
+	btn_explain_normal.y = 510;
+	btn_explain_normal.addEventListener("click", handleExplainClick);
 
-	btn_sort_normal.image.onload = function() {
-		scale(btn_sort_normal);
-		btn_sort_normal.x = 200;
-		btn_sort_normal.y = 510;
-		btn_sort_normal.addEventListener("click", handleSortClick);
-		stage.update();
-	}
+	btn_sort_normal.x = 200;
+	btn_sort_normal.y = 510;
+	btn_sort_normal.addEventListener("click", handleSortClick);
 
-	btn_begin_normal.image.onload = function() {
-		scale(btn_begin_normal);
-		btn_begin_normal.x = 65;
-		btn_begin_normal.y = 295;
-		btn_begin_normal.addEventListener("click", handleStartClick);
-		stage.update();
-	};
+	btn_begin_normal.x = 65;
+	btn_begin_normal.y = 295;
+	btn_begin_normal.addEventListener("click", handleStartClick);
 
-	explain_image.image.onload = function() {
-		scale(explain_image);
-		explain_image.addEventListener("click", handleExplainBackClick);
-		stage.update();
-	};
+	explain_image.addEventListener("click", handleExplainBackClick);
+
+	index_image.image.onload = addIndexReady();
+	btn_explain_normal.image.onload = addIndexReady();
+	btn_sort_normal.image.onload = addIndexReady();
+	btn_begin_normal.image.onload = addIndexReady();
+
 }
 
+var refresh_index_Interval = setInterval(function() {
+	if (index_ready >= 4) {
+		window.clearInterval(refresh_index_Interval);
+		stage.update();
+	}
+}, 100);
+
+function addIndexReady() {
+	index_ready++;
+}
 
 function addIndexPage() {
 	stage.addChild(index_image);
