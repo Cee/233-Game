@@ -13,13 +13,10 @@
 			// circle.x = 100;  
 			// circle.y = 100;  
 			var index_image = new createjs.Bitmap("re233/233_Game_0.png");
-			index_image.image.onload = function() {
-				index_image.scaleX = .5;
-				index_image.scaleY = .5; 
+			index_image.image.onload = function() { 
 				stage.update(); 
 			};
 			stage.addChild(index_image);
-			// stage.update();  
 		}
 		
 	</script>
@@ -27,7 +24,7 @@
 <body onload="javascript:init();">
 <!-- onload="javascript:init();" -->
 	<div id="game_div">
-		<canvas id="game_canvas" width="320" height="568"></canvas>
+		<canvas id="game_canvas" width="640" height="1136"></canvas>
 	</div>
 </body>
 </html>

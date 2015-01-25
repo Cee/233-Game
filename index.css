@@ -27,6 +27,6 @@ ul, li {
 
 #game_canvas {
 	background-color: gray;
-	width: 320px; 
-	height: 568px;
+	width: 640px; 
+	height: 1136px;
 }
