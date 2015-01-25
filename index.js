@@ -48,7 +48,6 @@ function loadImage() {
 	scale(btn_explain_normal);
 	scale(btn_sort_normal);
 	scale(btn_begin_normal);
-	scale(explain_image);
 
 	btn_explain_normal.x = 30;
 	btn_explain_normal.y = 510;
@@ -62,18 +61,22 @@ function loadImage() {
 	btn_begin_normal.y = 295;
 	btn_begin_normal.addEventListener("click", handleStartClick);
 
-	explain_image.addEventListener("click", handleExplainBackClick);
-
 	index_image.image.onload = addIndexReady();
 	btn_explain_normal.image.onload = addIndexReady();
 	btn_sort_normal.image.onload = addIndexReady();
 	btn_begin_normal.image.onload = addIndexReady();
 
+	explain_image.image.onload = function() {
+		scale(explain_image);
+		explain_image.addEventListener("click", handleExplainBackClick);
+	};
+	
 }
 
 var refresh_index_Interval = setInterval(function() {
 	if (index_ready >= 4) {
-		addIndexPage();
+		window.clearInterval(refresh_index_Interval);
+		stage.update();
 	}
 }, 100);
 
@@ -87,7 +90,6 @@ function addIndexPage() {
 	stage.addChild(btn_explain_normal);
 	stage.addChild(btn_sort_normal);
 	stage.update();
-	window.clearInterval(refresh_index_Interval);
 }
 
 function removeIndexPage() {
