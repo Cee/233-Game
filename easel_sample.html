@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+  <title>EaselJS Demo 001</title>
+  <script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
+  <style type="text/css" media="screen">
+    #my_canvas{
+      background-color: gray;
+    }
+  </style>
+  <script type="text/javascript">
+    var stage;
+    var box;
+    var box_width = 50;
+
+    function init()
+    {
+      var canvas = document.getElementById("my_canvas");
+      console.log(canvas);
+      stage = new createjs.Stage("my_canvas");
+
+      var graphics = new createjs.Graphics();
+      graphics.setStrokeStyle(3);
+      graphics.beginStroke(createjs.Graphics.getRGB(255,255,255,0.8));
+      graphics.drawRect(0, 0, box_width, box_width);
+
+      box = new createjs.Shape(graphics);
+      box.regX = box.regY = box_width / 2;
+      box.x = canvas.width / 2;
+      box.y = canvas.height / 2;
+
+      stage.addChild(box);
+      stage.update();
+
+      Ticker.setFPS(30);
+      Ticker.addListener(this);
+    }
+
+    function tick()
+    {
+      box.rotation += 4;
+      stage.update();
+    }
+  </script>
+</head>
+<body onload="javascript:init();">
+<canvas width="300" height="300" id="my_canvas"></canvas>
+</body>
+</html>

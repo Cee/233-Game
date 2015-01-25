@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<title>Easel Demo</title>
+	<link rel="stylesheet" href="index.css"/>
+	<script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
+	<script type="text/javascript">
+		function init() {
+			var stage = new createjs.Stage("game_canvas");
+			// var circle = new createjs.Shape();  
+			// circle.graphics.beginFill("red").drawCircle(0, 0, 50);  
+			// circle.x = 100;  
+			// circle.y = 100;  
+			var index_image = new createjs.Bitmap("re233/233_Game_0.png");
+			index_image.image.onload = function() {
+				index_image.scaleX = .5;
+				index_image.scaleY = .5; 
+				stage.update(); 
+			};
+			stage.addChild(index_image);
+			// stage.update();  
+		}
+		
+	</script>
+</head>
+<body onload="javascript:init();">
+<!-- onload="javascript:init();" -->
+	<div id="game_div">
+		<canvas id="game_canvas" width="320" height="568"></canvas>
+	</div>
+</body>
+</html>
