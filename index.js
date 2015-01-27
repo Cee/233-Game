@@ -111,6 +111,7 @@ function loadImage() {
 }
 
 function addIndexPage() {
+	preventOnTouchMove();
 	stage.addChild(index_image);
 	stage.addChild(btn_begin_normal);
 	stage.addChild(btn_explain_normal);
@@ -306,5 +307,4 @@ $(document).ready(function() {
 	$(window).resize(function () {
         adjust();
     });
-    preventOnTouchMove();
 });
