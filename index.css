@@ -63,7 +63,7 @@ ul, li {
 .rank_name {
 	display: inline-block;
 	margin-left: 5px;
-	margin-top: 4px;
+	margin-top: 5px;
 	color: #ff9e35;
 	height: 20px;
 	max-width: 160px;
@@ -91,7 +91,7 @@ ul, li {
 	float: right;
 	right: 0px;
 	width: 50px;
-	padding-top: 9px;
+	padding-top: 7px;
 	text-align: right;
 	color: #f34d6c;
 }
