@@ -322,10 +322,6 @@ function appendIcon() {
 				"id='" + number + "'" +
 				"></div>";
 	$("#game").append(node);
-	$("#game").children().last().click(function() {
-		$(this).fadeOut(300);
-		startGameLogic(parseInt($(this).attr("id")));
-	});
 	$("#game").children().last().bind("touchstart", function() {
 		$(this).fadeOut(300);
 		startGameLogic(parseInt($(this).attr("id")));
