@@ -6,6 +6,7 @@ var btn_begin_normal;
 var btn_explain_normal;
 var btn_rank_normal;
 var btn_share_normal;
+var btn_again_normal;
 
 var explain_image;
 var icon_back;
@@ -67,6 +68,7 @@ function loadImage() {
 	game_bg = new createjs.Bitmap("img/game_bg.jpg");
 	game_result_bg = new createjs.Bitmap("img/game_result_bg.png");
 	btn_share_normal = new createjs.Bitmap("img/btn_share_normal.png");
+	btn_again_normal = new createjs.Bitmap("img/btn_again_normal.png");
 
 	scale(index_image);
 	scale(btn_explain_normal);
@@ -76,6 +78,7 @@ function loadImage() {
 	scale(game_bg);
 	scale(game_result_bg);
 	scale(btn_share_normal);
+	scale(btn_again_normal);
 
 	btn_explain_normal.x = 30;
 	btn_explain_normal.y = 420;
@@ -91,6 +94,9 @@ function loadImage() {
 
 	icon_back.x = 0;
 	icon_back.y = 0;
+
+	btn_again_normal.x = 65;
+	btn_again_normal.y = 290;
 
 	index_image.image.onload = function() { 
 		stage.update();
@@ -149,39 +155,43 @@ function addGamePage() {
 }
 
 function addEndGamePage() {
-	btn_begin_normal.x = 65;
-	btn_begin_normal.y = 290;
+	btn_again_normal.addEventListener("click", handleAgainClick);
 	btn_rank_normal.addEventListener("click", handlePlayingRankClick);
-	btn_begin_normal.addEventListener("click", handleStartClick);
 	stage.addChild(game_result_bg);
 	stage.addChild(btn_share_normal);
 	stage.addChild(btn_rank_normal);
-	stage.addChild(btn_begin_normal);
+	stage.addChild(btn_again_normal);
 	stage.update();
 }
 
 function removeEndGamePage() {
 	btn_rank_normal.removeAllEventListeners();
-	btn_begin_normal.removeAllEventListeners();
+	btn_again_normal.removeAllEventListeners();
 	stage.removeChild(game_result_bg);
 	stage.removeChild(btn_share_normal);
 	stage.removeChild(btn_rank_normal);
-	stage.removeChild(btn_begin_normal);
+	stage.removeChild(btn_again_normal);
 	stage.update();
 }
 
 /** Btn Click Handlers **/
 function handleStartClick() {
 	removeIndexPage();
+	handleAgainClick();
+}
+
+function handleAgainClick() {
 	removeEndGamePage();
 	reset();
 	if (!isPlaying) {
 		isPlaying = true;
 		addGamePage();
 	}
+	$("#game").removeClass("hide");
 	stage.update();
 	startGame();
 }
+
 
 function handleExplainClick() {
 	removeIndexPage();
@@ -332,6 +342,7 @@ function appendIcon() {
 function endGame() {
 	window.clearInterval(game_refresh_timer);
 	$("#game").empty();
+	$("#game").addClass("hide");
 	addEndGamePage();
 }
 
