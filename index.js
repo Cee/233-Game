@@ -129,10 +129,10 @@ function removeIndexPage() {
 /** Btn Click Handlers **/
 function handleStartClick() {
 	removeIndexPage();
+	allowOnTouchMove();
 	stage.addChild(game_bg);
 	$("#game").removeClass("hide");
 	stage.update();
-	// startGameLogic();
 	startGame();
 }
 
@@ -266,6 +266,7 @@ function appendIcon() {
 }
 
 function endGame() {
+	preventOnTouchMove();
 	alert("End");
 }
 /** Scale **/
@@ -289,15 +290,21 @@ function adjust() {
 	$("#game").css("margin-left", $(window).width() / 2 - 130);
 }
 
+function preventOnTouchMove() {
+	document.ontouchmove = function(event){
+    	event.preventDefault();
+	}
+}
+
+function allowOnTouchMove() {
+	document.ontouchmove = function(event){
+    	return true;
+	}	
+}
+
 $(document).ready(function() {
 	$(window).resize(function () {
         adjust();
     });
-    document.ontouchmove = function(event){
-    	event.preventDefault();
-	}
-	// $(".icon").click(function() {
-	// 	click_numbers.push(parseInt($(this).attr("id")));
-	// 	$(this).addClass("hide");
-	// });
+    preventOnTouchMove();
 });
