@@ -66,6 +66,7 @@ ul, li {
 	max-width: 160px;
 	overflow: hidden;
 	white-space: nowrap;
+	word-break: keep-all;
 }
 
 .rank_num {
