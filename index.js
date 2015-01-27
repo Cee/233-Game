@@ -7,6 +7,7 @@ var btn_explain_normal;
 var btn_sort_normal;
 
 var explain_image;
+var icon_back;
 
 function init() {
 
@@ -40,6 +41,7 @@ function loadImage() {
 	btn_explain_normal = new createjs.Bitmap("img/btn_explain_normal.png");
 	btn_sort_normal = new createjs.Bitmap("img/btn_sort_normal.png");
 	explain_image = new createjs.Bitmap("img/explain_bg.png");
+	icon_back = new createjs.Bitmap("img/icon_back.png");
 
 	scale(index_image);
 	scale(btn_explain_normal);
@@ -57,6 +59,9 @@ function loadImage() {
 	btn_begin_normal.x = 65;
 	btn_begin_normal.y = 265;
 	btn_begin_normal.addEventListener("click", handleStartClick);
+
+	icon_back.x = 20;
+	icon_back.y = 28;
 
 	index_image.image.onload = function() { 
 		stage.update();
@@ -76,8 +81,11 @@ function loadImage() {
 
 	explain_image.image.onload = function() {
 		scale(explain_image);
-		explain_image.addEventListener("click", handleExplainBackClick);
 	};
+
+	icon_back.image.onload = function() {
+		scale(icon_back);
+	}
 
 	
 }
@@ -112,11 +120,14 @@ function handleSortClick() {
 function handleExplainClick() {
 	removeIndexPage();
 	stage.addChild(explain_image);
+	stage.addChild(icon_back);
+	icon_back.addEventListener("click", handleExplainBackClick);
 	stage.update();
 }
 
 function handleExplainBackClick() {
 	stage.removeChild(explain_image);
+	stage.removeChild(icon_back);
 	addIndexPage();
 	stage.update();
 }
