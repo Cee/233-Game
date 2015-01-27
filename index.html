@@ -10,14 +10,16 @@
     <meta name="360-fullscreen" content="true">
 	<title>布丁动画 - 233 Collection</title>
 	<link rel="stylesheet" href="index.css"/>
+	<script type="text/javascript" src="script/jquery.min.js"></script>
 	<script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
 	<script type="text/javascript" src="index.js"></script>
+	
 </head>
-<body onload="javascript:init();">
+<body onload="javascript:init();adjust();">
 	<div id="game_div">
 		<canvas id="game_canvas" width="320" height="480"></canvas>
 	</div>
-	<div id="rank">
+	<div id="rank" class="hide">
 		<div class="rank_line">
 			<div class="rank_num no_1">
 				<div class="rank_number">1</div>

@@ -4,10 +4,13 @@ var stage;
 var index_image;
 var btn_begin_normal;
 var btn_explain_normal;
-var btn_sort_normal;
+var btn_rank_normal;
 
 var explain_image;
 var icon_back;
+
+var rank_image;
+
 
 function init() {
 
@@ -39,22 +42,24 @@ function loadImage() {
 	index_image = new createjs.Bitmap("img/index_bg.png");
 	btn_begin_normal = new createjs.Bitmap("img/btn_begin_normal.png");
 	btn_explain_normal = new createjs.Bitmap("img/btn_explain_normal.png");
-	btn_sort_normal = new createjs.Bitmap("img/btn_sort_normal.png");
-	explain_image = new createjs.Bitmap("img/explain_bg.png");
+	btn_rank_normal = new createjs.Bitmap("img/btn_rank_normal.png");
+	explain_image = new createjs.Bitmap("img/explain_bg.jpg");
 	icon_back = new createjs.Bitmap("img/icon_back.png");
+	rank_image = new createjs.Bitmap("img/rank_bg.jpg");
 
 	scale(index_image);
 	scale(btn_explain_normal);
-	scale(btn_sort_normal);
+	scale(btn_rank_normal);
 	scale(btn_begin_normal);
+	scale(rank_image);
 
 	btn_explain_normal.x = 30;
 	btn_explain_normal.y = 420;
 	btn_explain_normal.addEventListener("click", handleExplainClick);
 
-	btn_sort_normal.x = 200;
-	btn_sort_normal.y = 420;
-	btn_sort_normal.addEventListener("click", handleSortClick);
+	btn_rank_normal.x = 200;
+	btn_rank_normal.y = 420;
+	btn_rank_normal.addEventListener("click", handleRankClick);
 
 	btn_begin_normal.x = 65;
 	btn_begin_normal.y = 265;
@@ -71,7 +76,7 @@ function loadImage() {
 		stage.update();
 	}
 
-	btn_sort_normal.image.onload = function() {
+	btn_rank_normal.image.onload = function() {
 		stage.update();
 	}
 
@@ -94,7 +99,7 @@ function addIndexPage() {
 	stage.addChild(index_image);
 	stage.addChild(btn_begin_normal);
 	stage.addChild(btn_explain_normal);
-	stage.addChild(btn_sort_normal);
+	stage.addChild(btn_rank_normal);
 	stage.update();
 }
 
@@ -102,17 +107,12 @@ function removeIndexPage() {
 	stage.removeChild(index_image);
 	stage.removeChild(btn_begin_normal);
 	stage.removeChild(btn_explain_normal);
-	stage.removeChild(btn_sort_normal);
+	stage.removeChild(btn_rank_normal);
 	stage.update();
 }
 
 /** Btn Click Handlers **/
 function handleStartClick() {
-	removeIndexPage();
-	// stage.update();
-}
-
-function handleSortClick() {
 	removeIndexPage();
 	// stage.update();
 }
@@ -125,9 +125,28 @@ function handleExplainClick() {
 	stage.update();
 }
 
+function handleRankClick() {
+	$("#rank").removeClass("hide");
+	removeIndexPage();
+	stage.addChild(rank_image);
+	stage.addChild(icon_back);
+	icon_back.addEventListener("click", handleIndexRankBackClick);
+	stage.update();
+}
+
 function handleExplainBackClick() {
 	stage.removeChild(explain_image);
 	stage.removeChild(icon_back);
+	icon_back.removeAllEventListeners();
+	addIndexPage();
+	stage.update();
+}
+
+function handleIndexRankBackClick() {
+	$("#rank").addClass("hide");
+	stage.removeChild(rank_image);
+	stage.removeChild(icon_back);
+	icon_back.removeAllEventListeners();
 	addIndexPage();
 	stage.update();
 }
@@ -137,3 +156,14 @@ function scale(obj) {
 	obj.scaleX = .5;
 	obj.scaleY = .5;
 }
+
+
+function adjust() {
+	$("#rank").css("margin-left", $(window).width() / 2 - 140);
+}
+
+$(document).ready(function() {
+	$(window).resize(function () {
+        adjust();
+    });
+});
