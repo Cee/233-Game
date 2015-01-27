@@ -157,6 +157,7 @@ function addGamePage() {
 function addEndGamePage() {
 	btn_again_normal.addEventListener("click", handleAgainClick);
 	btn_rank_normal.addEventListener("click", handlePlayingRankClick);
+	$("#score").removeClass("hide");
 	stage.addChild(game_result_bg);
 	stage.addChild(btn_share_normal);
 	stage.addChild(btn_rank_normal);
@@ -167,6 +168,7 @@ function addEndGamePage() {
 function removeEndGamePage() {
 	btn_rank_normal.removeAllEventListeners();
 	btn_again_normal.removeAllEventListeners();
+	$("#score").addClass("hide");
 	stage.removeChild(game_result_bg);
 	stage.removeChild(btn_share_normal);
 	stage.removeChild(btn_rank_normal);
@@ -191,7 +193,6 @@ function handleAgainClick() {
 	stage.update();
 	startGame();
 }
-
 
 function handleExplainClick() {
 	removeIndexPage();
@@ -252,7 +253,6 @@ function startGame() {
     		var node = showingIcons[index];
     		var diff = (timePoint - node["timePoint"]);
     		var percent = parseFloat(diff / node["duration"]);
-    		console.log(diff, percent);
     		var top = all_height * percent;
     		$(element).css("top", top);
     	});
@@ -274,10 +274,10 @@ function startGame() {
 
     	// add
     	if (timePoint % speed == 0) {
-    		if (timePoint % 1000 == 0) {
+    		if (timePoint % 800 == 0) {
     			speed -= 75;
     			speed = (speed > 75) ? speed : 75;
-    			duration -= 500;
+    			duration -= 1200;
     			duration = (duration > 1000) ? duration : 1000;
     		}
     		// if (timePoint % 2000 == 0) {
@@ -323,11 +323,11 @@ function appendIcon() {
 				"></div>";
 	$("#game").append(node);
 	$("#game").children().last().click(function() {
-		$(this).addClass("hide");
+		$(this).fadeOut(300);
 		startGameLogic(parseInt($(this).attr("id")));
 	});
 	$("#game").children().last().bind("touchstart", function() {
-		$(this).addClass("hide");
+		$(this).fadeOut(300);
 		startGameLogic(parseInt($(this).attr("id")));
 	});
 	var showingIcon = {
@@ -379,6 +379,7 @@ function rotate_icon(degree) {
 function adjust() {
 	$("#rank").css("margin-left", $(window).width() / 2 - 140);
 	$("#game").css("margin-left", $(window).width() / 2 - 130);
+	$("#score").css("margin-left", $(window).width() / 2 - 160);
 }
 
 $(document).ready(function() {

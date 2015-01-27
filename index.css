@@ -189,3 +189,24 @@ ul, li {
 	display: none;
 }
 
+/** score **/
+#score {
+	position: fixed;
+	float: center;
+	width: 320px;
+	height: 95px;
+	overflow: hidden;
+	top: 157px;
+	color: white;
+	text-align: center;
+	/** margin-left: to be set; **/
+}
+
+.score_line {
+	margin: 6px 0;
+}
+
+#score span {
+	font-weight: bold;
+	font-size: 22px;
+}

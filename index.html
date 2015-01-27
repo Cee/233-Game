@@ -11,8 +11,8 @@
 	<title>布丁动画 - 233 Collection</title>
 	<link rel="stylesheet" href="index.css"/>
 	<script type="text/javascript" src="script/jquery.min.js"></script>
-	<script type="text/javascript" src="easeljs-0.8.0.min.js"></script>
-	<script type="text/javascript" src="index.js"></script>
+	<script type="text/javascript" src="script/easeljs-0.8.0.min.js"></script>
+	<script type="text/javascript" src="script/index.js"></script>
 	
 </head>
 <body onload="javascript:init();adjust();">
@@ -99,5 +99,16 @@
 		</div>
 	</div>
 	<div id="game" class="hide"></div>
+	<div id="score" class="hide">
+		<div class="score_line">
+			本次获得 <span id="score_num">96</span> 个积分
+		</div>
+		<div class="score_line">
+			打败了 <span id="score_rival">1556</span> 个对手
+		</div>
+		<div class="score_line">
+			还剩 <span id="remain_num">2</span> 次机会
+		</div>
+	</div>
 </body>
 </html>
