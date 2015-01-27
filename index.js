@@ -119,18 +119,20 @@ function handleStartClick() {
 
 function handleExplainClick() {
 	removeIndexPage();
+	icon_back.addEventListener("click", handleExplainBackClick);
+	explain_image.addEventListener("click", handleExplainBackClick);
 	stage.addChild(explain_image);
 	stage.addChild(icon_back);
-	icon_back.addEventListener("click", handleExplainBackClick);
 	stage.update();
 }
 
 function handleRankClick() {
 	$("#rank").removeClass("hide");
 	removeIndexPage();
+	icon_back.addEventListener("click", handleIndexRankBackClick);
+	rank_image.addEventListener("click", handleIndexRankBackClick);
 	stage.addChild(rank_image);
 	stage.addChild(icon_back);
-	icon_back.addEventListener("click", handleIndexRankBackClick);
 	stage.update();
 }
 
