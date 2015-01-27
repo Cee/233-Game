@@ -65,8 +65,8 @@ function loadImage() {
 	btn_begin_normal.y = 265;
 	btn_begin_normal.addEventListener("click", handleStartClick);
 
-	icon_back.x = 20;
-	icon_back.y = 28;
+	icon_back.x = 0;
+	icon_back.y = 0;
 
 	index_image.image.onload = function() { 
 		stage.update();
