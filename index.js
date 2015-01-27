@@ -35,7 +35,7 @@ function init() {
 }
 
 function loadImage() {
-	index_image = new createjs.Bitmap("img/index_bg.jpg");
+	index_image = new createjs.Bitmap("img/index_bg.png");
 	btn_begin_normal = new createjs.Bitmap("img/btn_begin_normal.png");
 	btn_explain_normal = new createjs.Bitmap("img/btn_explain_normal.png");
 	btn_sort_normal = new createjs.Bitmap("img/btn_sort_normal.png");
@@ -47,15 +47,15 @@ function loadImage() {
 	scale(btn_begin_normal);
 
 	btn_explain_normal.x = 30;
-	btn_explain_normal.y = 510;
+	btn_explain_normal.y = 420;
 	btn_explain_normal.addEventListener("click", handleExplainClick);
 
 	btn_sort_normal.x = 200;
-	btn_sort_normal.y = 510;
+	btn_sort_normal.y = 420;
 	btn_sort_normal.addEventListener("click", handleSortClick);
 
 	btn_begin_normal.x = 65;
-	btn_begin_normal.y = 295;
+	btn_begin_normal.y = 265;
 	btn_begin_normal.addEventListener("click", handleStartClick);
 
 	index_image.image.onload = function() { 
