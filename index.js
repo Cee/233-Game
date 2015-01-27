@@ -166,4 +166,7 @@ $(document).ready(function() {
 	$(window).resize(function () {
         adjust();
     });
+    document.ontouchmove = function(event){
+    	event.preventDefault();
+	}
 });
